@@ -1,20 +1,39 @@
-import { Ticket } from '@acme/shared-models';
-import styles from './tickets.module.css';
+import { useMemo } from 'react';
+import { useAppSelector } from '../../hooks/useRedux';
+import { Link } from 'react-router-dom';
 
-export interface TicketsProps {
-  tickets: Ticket[];
+import { FormTicket } from './form-ticket';
+import { TicketItem } from './ticket-item';
+
+export interface IUser {
+  id: number;
+  name: string;
 }
 
-export function Tickets(props: TicketsProps) {
+export function Tickets() {
+  const tickets = useAppSelector((state) => state.tickets.tickets);
+  const status = useAppSelector((state) => state.tickets.status);
+
+  const renderedTickets = useMemo(() => {
+    if (status === 'complete') {
+      return tickets.filter((t) => t.completed);
+    }
+    if (status === 'incomplete') {
+      return tickets.filter((t) => !t.completed);
+    }
+    return tickets;
+  }, [tickets, status]);
+
   return (
-    <div className={styles['tickets']}>
-      <h2>Tickets</h2>
-      {props.tickets ? (
-        <ul>
-          {props.tickets.map((t) => (
-            <li key={t.id}>
-              Ticket: {t.id}, {t.description}
-            </li>
+    <div className="mt-2">
+      <FormTicket />
+      <h2 className="text-3xl font-bold dark:text-white">Tickets</h2>
+      {tickets ? (
+        <ul className="py-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+          {renderedTickets.map((t) => (
+            <Link to={`${t.id}`}>
+              <TicketItem key={t.id} {...t} />
+            </Link>
           ))}
         </ul>
       ) : (
