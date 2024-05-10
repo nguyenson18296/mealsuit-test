@@ -1,3 +1,5 @@
+## Node version: v18.17.1
+
 # Coding assignment
 
 The goal of this assignment is to showcase your ability to develop features and your coding style. Due to the time
