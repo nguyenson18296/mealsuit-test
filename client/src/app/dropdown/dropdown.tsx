@@ -94,7 +94,7 @@ export const Dropdown: React.FC<IDropdown> = ({
         </svg>
       </button>
       <div
-        id="dropdown"
+        data-testid="dropdown"
         className={cx(
           'z-10 absolute top-[100%] text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700',
           {
@@ -128,9 +128,9 @@ export const Dropdown: React.FC<IDropdown> = ({
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m1 9 4-4-4-4"
                 />
               </svg>

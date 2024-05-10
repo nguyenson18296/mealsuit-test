@@ -3,7 +3,6 @@ import React, { useCallback } from 'react';
 import { Dropdown } from '../dropdown/dropdown';
 import { ITicket } from '../../store/tickets/ticketsSlice';
 
-import { IUser } from '../../store/users/usersSlice';
 import { useAppSelector } from '../../hooks/useRedux';
 
 export const TicketItem: React.FC<ITicket> = ({
@@ -39,14 +38,14 @@ export const TicketItem: React.FC<ITicket> = ({
       <div className="mt-1">
         Status:
         {completed ? (
-          <span className="ml-1 text-[#0E9F6E]">Completed</span>
+          <span className="status ml-1 text-[#0E9F6E]">Completed</span>
         ) : (
-          <span className="ml-1 text-[#E02424]">Incomplete</span>
+          <span className="status ml-1 text-[#E02424]">Incomplete</span>
         )}
       </div>
       <div className="mt-1">
         Assignee:
-        <span className="text-[#F98080] font-semibold ml-1">
+        <span className="assignee text-[#F98080] font-semibold ml-1">
           {getAssignee(assigneeId)}
         </span>
       </div>
